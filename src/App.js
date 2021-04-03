@@ -6,6 +6,7 @@ import ColorPicker from './components/colorPicker/index.js';
 const title = "Color Picker";
 
 class App extends Component {
+
   render() {
     return (
       <div>
@@ -15,7 +16,10 @@ class App extends Component {
             <h4 id="app-title" data-testid="app-title" className="app-title">{title}</h4>
           </div>
         </nav>
-        <ColorPicker colorPickerOptions={this.props.colorPickerOptions} initialSelectedColor={this.props.initialSelectedColor}/>
+        <ColorPicker 
+          colorPickerOptions={this.props.colorPickerOptions} 
+          initialSelectedColor={this.props.initialSelectedColor}
+        />
       </div>
     );
   }

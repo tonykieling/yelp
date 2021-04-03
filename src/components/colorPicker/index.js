@@ -3,15 +3,31 @@ import "./index.css";
 const classNames = require('classnames');
 
 export default class ColorPicker extends Component {
+  
+  state = {
+    selectedColor: this.props.initialSelectedColor
+  };
+
+
+  // this is the method to change the picker color background
+  changeColor = newColor => {
+    this.setState({
+      selectedColor: newColor
+    });
+  }
 
   render() {
-    let selectedColor;
+
     return (
       <div>
         <div className="layout-row justify-content-center">
           <div className="card mt-75">
-            <div className="canvas" data-testid="selectedColor">
-              <p className="text-center mx-auto px-5">{selectedColor}</p>
+            <div 
+              className="canvas" 
+              data-testid="selectedColor"
+              style = {{background: this.state.selectedColor}}
+            >
+              <p className="text-center mx-auto px-5">{this.state.selectedColor}</p>
             </div>
             <div className="card-actions">
               <div className="layout-row justify-content-center align-items-center" data-testid="colorPickerOptions">
@@ -23,10 +39,12 @@ export default class ColorPicker extends Component {
                           'color-box': true,
                           'mx-8': true,
                           'my-15': true,
-                          'selected': selectedColor === color
+                          'selected': this.state.selectedColor === color
                         })
                       }
                       key={color}
+                      style = {{background: color}}
+                      onClick = {() => this.changeColor(color)}
                     ></div>
                   );
                 })}
